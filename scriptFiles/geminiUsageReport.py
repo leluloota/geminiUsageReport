@@ -56,9 +56,9 @@ infoLog('')
 
 # Start looping log files
 debugLog('Log file loop started')
-for entry in sourceLogFiles:  # Get next file
-    logFile = entry.rsplit('\\', 1)[-1]  # Get file name with extension
-    infoLog(f'Log file: {logFile}'.format(logFile=logFile))
+for entry in sourceLogFiles:
+    sourceLogFile = entry.rsplit('\\', 1)[-1]  # Get file name with extension
+    infoLog(f'Log file: {sourceLogFile}'.format(sourceLogFile=sourceLogFile))
     try:
         shutil.copy(entry, workPath)  # Copy log file to work path
         infoLog(f'File: {entry} copied to {workPath}'.format(entry=entry, workPath=workPath))
@@ -66,4 +66,4 @@ for entry in sourceLogFiles:  # Get next file
     except Exception as e:
         errorLog('Log file copy failed')
         errorLog('Error message: {e}'.format(e=e))
-    parser(logFile, workPath, infoLog, errorLog, debugLog)
+    parser(sourceLogFile, workPath, infoLog, errorLog, debugLog)
